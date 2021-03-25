@@ -1,10 +1,40 @@
 {
     "road": {
-        "aracaju": "XXX",
-        "belem": "XXX",
-        "beloHorizonte": "XXX",
-        "boaVista": "XXX",
-        "brasilia": "XXX",
+        "aracaju": 2765,
+        "belem": 2942,
+        "beloHorizonte": 1453,
+        "boaVista": 3836,
+        "brasilia": 1134,
+        "campoGrande": 0,
+        "cuiaba": 694,
+        "curitiba": 991,
+        "florianopolis": 1298,
+        "fortaleza": 3407,
+        "goiania": 935,
+        "joaoPessoa": 3357,
+        "macapa": "",
+        "maceio": 304,
+        "manaus": 3051,
+        "natal": 3534,
+        "palmas": 1785,
+        "portoAlegre": 1518,
+        "portoVelho": 215,
+        "recife": 3247,
+        "rioBranco": 2684,
+        "rioDeJaneiro": 1444,
+        "salvador": 2568,
+        "saoLuis": 2979,
+        "saoPaulo": 1014,
+        "teresina": 2911,
+        "vitoria": 1892
+    },
+
+    "air": {
+        "aracaju": 2155,
+        "belem": 2212,
+        "beloHorizonte": 1118,
+        "boaVista": 2667,
+        "brasilia": 878,
         "campoGrande": 0,
         "cuiaba": 559,
         "curitiba": 780,
@@ -27,14 +57,5 @@
         "saoPaulo": 894,
         "teresina": 2132,
         "vitoria": 149
-    },
-
-    "air": {
-        "aracaju": 2765,
-        "belem": 2942,
-        "beloHorizonte": 1453,
-        "boaVista": 3836,
-        "brasilia": 1134,
-        "campoGrande": 0
     }
 }
