@@ -1,6 +1,6 @@
 let cidadeAtual, cidadeDestino, distanciaPercorrida, heuristica, custoAtual;
 
-cidadeAtual = "boaVista";
+cidadeAtual = "goiania";
 cidadeDestino = "portoAlegre";
 distanciaPercorrida = 0;
 heuristica = 0;
@@ -43,7 +43,7 @@ function BFS(cidadeAtual, cidadeDestino, filaCidades) {
     }
 }
 
-//Função para buscar a elhor cidade
+//Função para buscar a cidade mais próxima da cidade destino
 async function buscaCidadeMaisProximoDestino(cidadesVizinhas) {
     let melhorCidade = cidadesVizinhas[0];
     await cidadesVizinhas.forEach((nomeCidade, valor) => {
@@ -89,5 +89,70 @@ async function BuscaGulosa(cidadeAtual, cidadeDestino, filaCidades) {
     });
 }
 
+grafo = require("../data/graph/graph.json");
+const caminhoCidades = [];
+const pilhaCidadesVisitar = [];
+//Algoritmo Busca de custo uniforme
+function buscaCustoUniforme(cidadeAtual, cidadeDestino, custoTotal) {
+    caminhoCidades.push(cidadeAtual);
+
+    console.log("Caminho Cidades:", caminhoCidades);
+    console.log("Cidade Atual:", cidadeAtual);
+    console.log("Custo Total:", custoTotal);
+
+    let cidadesVizinhas = grafo[cidadeAtual];
+    let custoMelhorCidade, melhorCidade;
+
+    console.log("Custo Vizinhas:", cidadesVizinhas);
+
+    cidadesVizinhas.forEach((key, index) => {
+        const lito = key != cidadeAtual && !caminhoCidades.includes(key);
+        if (lito && cidadeAtual != melhorCidade) {
+            custoMelhorCidade = getDistanciaCidadeDestino(
+                cidadeAtual,
+                cidadesVizinhas[index]
+            );
+            melhorCidade = cidadesVizinhas[index];
+            console.log("PREENCHIDA MELHOR CIDADE", custoMelhorCidade);
+        } else if (
+            lito &&
+            getDistanciaCidadeDestino(cidadeAtual, cidadesVizinhas[index]) <=
+                custoMelhorCidade
+        ) {
+            console.log("PRIMEIRA VALIDAçÃO", cidadesVizinhas[index]);
+            custoMelhorCidade = getDistanciaCidadeDestino(
+                cidadeAtual,
+                cidadesVizinhas[index]
+            );
+            melhorCidade = cidadesVizinhas[index];
+        }
+    });
+
+    console.log("Cidade mais proxima" + custoMelhorCidade);
+
+    if (melhorCidade === cidadeDestino) {
+        console.log("ACHOU");
+    } else if (caminhoCidades.includes(melhorCidade)) {
+        console.log("CIDADE SEM SAIDA", melhorCidade);
+        pilhaCidadesVisitar.unshift();
+
+        buscaCustoUniforme(
+            pilhaCidadesVisitar[pilhaCidadesVisitar.length-1],
+            cidadeDestino,
+            custoTotal + custoMelhorCidade
+        );
+    } else {
+        console.log("Indo para", melhorCidade);
+
+        pilhaCidadesVisitar.push(melhorCidade);
+
+        buscaCustoUniforme(
+            melhorCidade,
+            cidadeDestino,
+            custoTotal + custoMelhorCidade
+        );
+    }
+}
+
 let filaCidades = [];
-BuscaGulosa(cidadeAtual, cidadeDestino, filaCidades);
+buscaCustoUniforme(cidadeAtual, cidadeDestino, 0);
