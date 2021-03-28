@@ -1321,7 +1321,7 @@ function breadthFirstSearch(initialState, goalTest, actions, successor) {
             // returns the path to the goal.
             if (goalTest(newS)) {
                 console.log("FOUND GOAL!", newS);
-                return newN.path() + " with path cost " + newN.pathCost();
+                return newN.path() + " caminho com custo total: " + newN.pathCost();
             }
 
             // If the successor is already expanded,
@@ -1428,7 +1428,7 @@ function depthFirstSearch(initialState, goalTest, actions, successor) {
             // returns the path to the goal.
             if (goalTest(newS)) {
                 console.log("FOUND GOAL!", newS);
-                return newN.path() + " with path cost " + newN.pathCost();
+                return newN.path() + " caminho com custo total: " + newN.pathCost();
             }
 
             // If the successor is already expanded,
@@ -1615,7 +1615,7 @@ function uniformCostSearch(initialState, goalTest, actions, successor) {
     if (shortestPath.pathCost === null) {
         return "Couldn't find path.";
     } else {
-        return shortestPath.path + " with path cost " + shortestPath.pathCost;
+        return shortestPath.path + " caminho com custo total: " + shortestPath.pathCost;
     }
 }
 
@@ -1774,9 +1774,9 @@ function aStarSearch(initialState, goalTest, actions, successor, cidadeAlvo) {
     }
 
     if (shortestPath.pathCost === null) {
-        return "Couldn't find path.";
+        return "Não foi possível encontrar uma rota.";
     } else {
-        return shortestPath.path + " with path cost " + shortestPath.pathCost;
+        return shortestPath.path + " caminho que tem um custo total: " + shortestPath.pathCost;
     }
 }
 
@@ -1815,27 +1815,27 @@ function setSearchInput() {
         goalCity = goal.value;
         return true;
     } else {
-        setResult("Error: Please enter a valid city.");
+        setResult("Error: Por favor, informe uma cidade válida.");
         return false;
     }
 }
 
 function bfs() {
-    document.getElementById("path").innerHTML = "Path:";
+    document.getElementById("path").innerHTML = "Caminho:";
     if (setSearchInput()) {
         setResult(breadthFirstSearch(startCity, goalTest, actions, successor));
     }
 }
 
 function dfs() {
-    document.getElementById("path").innerHTML = "Path:";
+    document.getElementById("path").innerHTML = "Caminho:";
     if (setSearchInput()) {
         setResult(depthFirstSearch(startCity, goalTest, actions, successor));
     }
 }
 
 function ucs() {
-    document.getElementById("path").innerHTML = "Optimal path:";
+    document.getElementById("path").innerHTML = "Caminho ótimo:";
     if (setSearchInput()) {
         setResult(uniformCostSearch(startCity, goalTest, actions, successor));
     }
@@ -1843,7 +1843,7 @@ function ucs() {
 
 function astar() {
     document.getElementById("path").innerHTML =
-        "Optimal path with straight-line distance heuristic:";
+        "Caminho ótimo seguindo a distancia heuristica em linha reta:";
     if (setSearchInput()) {
         // if (goalCity !== "Bucharest") {
         //     setResult("Error: Heuristic values are only calculated for any start city to Bucharest. Please change the goal city to Bucharest and try again.");
