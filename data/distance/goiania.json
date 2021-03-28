@@ -1,24 +1,14 @@
 {
-    "aracaju": 1.461
-    ,
-    "belem": 1.693
-    ,
-    "beloHorizonte": 666
-    ,
-    "boaVista": 2.503
-    ,
-    "brasilia": 173
-    ,
-    "campoGrande": 705
-    ,
-    "cuiaba": 740
-    ,
-    "curitiba": 972
-    ,
-    "florianopolis": 1.215
-    ,
-    "fortaleza": 1.854
-    ,
+    "aracaju": 1461,
+    "belem": 1693,
+    "beloHorizonte": 666,
+    "boaVista": 2503,
+    "brasilia": 173,
+    "campoGrande": 705,
+    "cuiaba": 740,
+    "curitiba": 972,
+    "florianopolis": 1215,
+    "fortaleza": 1854,
     "goiania": 0,
     "joaoPessoa": 1889,
     "macapa": 1868,

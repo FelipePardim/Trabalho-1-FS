@@ -89,70 +89,84 @@ async function BuscaGulosa(cidadeAtual, cidadeDestino, filaCidades) {
     });
 }
 
-grafo = require("../data/graph/graph.json");
-const caminhoCidades = [];
-const pilhaCidadesVisitar = [];
-//Algoritmo Busca de custo uniforme
-function buscaCustoUniforme(cidadeAtual, cidadeDestino, custoTotal) {
-    caminhoCidades.push(cidadeAtual);
+let custoRotas = [];
 
-    console.log("Caminho Cidades:", caminhoCidades);
-    console.log("Cidade Atual:", cidadeAtual);
-    console.log("Custo Total:", custoTotal);
+function buscaCustoUniforme(
+    cidadeAtual,
+    cidadeDestino,
+    cidadesVisitadas,
+    custoTotal
+) {
+    cidadesVisitadas.push(cidadeAtual);
 
-    let cidadesVizinhas = grafo[cidadeAtual];
-    let custoMelhorCidade, melhorCidade;
+    console.log("Você chegou em: ", cidadeAtual);
+    console.log("Seu custo é: ", custoTotal);
+    console.log("Você visitou: ", cidadesVisitadas);
 
-    console.log("Custo Vizinhas:", cidadesVizinhas);
-
-    cidadesVizinhas.forEach((key, index) => {
-        const lito = key != cidadeAtual && !caminhoCidades.includes(key);
-        if (lito && cidadeAtual != melhorCidade) {
-            custoMelhorCidade = getDistanciaCidadeDestino(
-                cidadeAtual,
-                cidadesVizinhas[index]
-            );
-            melhorCidade = cidadesVizinhas[index];
-            console.log("PREENCHIDA MELHOR CIDADE", custoMelhorCidade);
-        } else if (
-            lito &&
-            getDistanciaCidadeDestino(cidadeAtual, cidadesVizinhas[index]) <=
-                custoMelhorCidade
-        ) {
-            console.log("PRIMEIRA VALIDAçÃO", cidadesVizinhas[index]);
-            custoMelhorCidade = getDistanciaCidadeDestino(
-                cidadeAtual,
-                cidadesVizinhas[index]
-            );
-            melhorCidade = cidadesVizinhas[index];
-        }
-    });
-
-    console.log("Cidade mais proxima" + custoMelhorCidade);
-
-    if (melhorCidade === cidadeDestino) {
-        console.log("ACHOU");
-    } else if (caminhoCidades.includes(melhorCidade)) {
-        console.log("CIDADE SEM SAIDA", melhorCidade);
-        pilhaCidadesVisitar.unshift();
-
-        buscaCustoUniforme(
-            pilhaCidadesVisitar[pilhaCidadesVisitar.length-1],
-            cidadeDestino,
-            custoTotal + custoMelhorCidade
-        );
+    if (cidadeAtual === cidadeDestino) {
+        console.log("Chegou no destino");
+        return cidadeDestino;
     } else {
-        console.log("Indo para", melhorCidade);
+        let cidadesFilhas = grafo[cidadeAtual];
+        let cidadeMaisProxima;
+        let cidadesFilhasVisitadas = 0;
 
-        pilhaCidadesVisitar.push(melhorCidade);
+        console.log("Cidades filhas: ", cidadesFilhas);
 
-        buscaCustoUniforme(
-            melhorCidade,
-            cidadeDestino,
-            custoTotal + custoMelhorCidade
-        );
+        cidadesFilhas.forEach((cidade, index) => {
+            let rotaAnalizada = {};
+
+            if (cidadesVisitadas.includes(cidade)) {
+                cidadesFilhasVisitadas += 1;
+            } else {
+                if (!cidadeMaisProxima) {
+                    cidadeMaisProxima = cidade;
+                }
+
+                if (
+                    getDistanciaCidadeDestino(cidadeAtual, cidadeMaisProxima) >
+                    getDistanciaCidadeDestino(cidadeAtual, cidade)
+                ) {
+                    cidadeMaisProxima = cidade;
+                }
+                
+                rotaAnalizada = {
+                    "cidade" : cidade,
+                    "custo": getDistanciaCidadeDestino(cidadeAtual, cidade)
+                }
+                custoRotas.push(rotaAnalizada);
+
+                console.log(
+                    "Rota analizada está na lista de rotas: ",
+                    custoRotas.includes(rotaAnalizada)
+                );
+            }
+        });
+
+        console.log("Custo Rotas: ", custoRotas[1]);
+        console.log("Quantidade de Cidades Filhas: ", cidadesFilhas.length);
+        console.log("Cidades Filhas Já Visitadas: ", cidadesFilhasVisitadas);
+        console.log("Cidades mais próxima: ", cidadeMaisProxima);
+        console.log("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
+
+        if (cidadesFilhasVisitadas == cidadesFilhas.length) {
+            console.log("CIDADE FOLHA");
+            return;
+        } else {
+            custoRotas.forEach((rota, index) => {
+                if (cidadesVisitadas.includes(rota.cidade)) {
+                    console.log("CIDADE JA VIISTADA");
+                } else {
+                    buscaCustoUniforme(
+                        cidadeMaisProxima,
+                        cidadeDestino,
+                        cidadesVisitadas,
+                        custoTotal
+                    );
+                }
+            });
+        }
     }
 }
 
-let filaCidades = [];
-buscaCustoUniforme(cidadeAtual, cidadeDestino, 0);
+buscaCustoUniforme(cidadeAtual, cidadeDestino, [], 0);
