@@ -17,8 +17,8 @@
 
 ---
  
-## Index
-- [Index](#index).
+## Índice
+- [Índice](#Índice).
 - [Sobre](#Sobre).
 - [Requisitos](#Requisitos).
 - [Instalação](#Instalação).
