@@ -363,8 +363,8 @@ let cities = [
         },
         nearby: [
             {
-                name: "Cuiaba",
-                cost: 1302,
+                name: "CampoGrande",
+                cost: 780,
             },
             {
                 name: "SaoPaulo",
@@ -1815,7 +1815,7 @@ function setSearchInput() {
         goalCity = goal.value;
         return true;
     } else {
-        setResult("Error: Por favor, informe uma cidade válida.");
+        setResult("Erro: Por favor, informe uma cidade válida.");
         return false;
     }
 }

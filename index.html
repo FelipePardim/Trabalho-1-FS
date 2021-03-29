@@ -9,13 +9,15 @@
 <body>
     <h1>Algoritmos de Busca</h1>
     <div class="attribution">
-        <p>Créditos: <a href="https://github.com/matthamil">Matt Hamil</a></p>
-        <p>Fonte: <a href="https://brasilescola.uol.com.br/brasil/estados-brasil.htm">Brasilescola.uol.com.br</a></p>
+        <p>Créditos implementação: <a href="https://github.com/matthamil">Matt Hamil</a></p>
     </div>
-    <img src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/estados-do-brasil.jpg" alt="Mapa do Brasil"/>
+    <img src="./src/img/brasilMap.png" alt="Mapa do Brasil"/>
+    <div class="attribution">
+        <p>Fonte: <a href="https://atlasescolar.ibge.gov.br/images/atlas/mapas_brasil/brasil_politico.pdf">https://atlasescolar.ibge.gov.br/images/atlas/mapas_brasil/brasil_politico.pdf</a></p>
+    </div>
     <h2>Mapa do Brasil</h2>
     <h4>Utilize CamelCase</h4>
-    <h4>Exemplo: PortoAlegre</h4>
+    <h4>Exemplo: PortoAlegre, Salvador</h4>
     <div style="text-align: center;">
         <input type="text" id="start" placeholder="Cidade de Partida"/>
         <input type="text" id="goal" placeholder="Cidade de Destino"/>
@@ -26,8 +28,9 @@
         <button onclick="ucs()" class="btn btn-warning" id="ucs-button">Custo Uniforme</button>
         <button onclick="astar()" class="btn btn-danger" id="astar-button">A*</button>
     </div>
-    <h2 id="path">Caminho:</h2>
+    <h2 id="path">Caminho selecionado:</h2>
     <div id="search-result"></div>
+    </br>
     <div class="attribution">
         <p>Alunos: <a href="https://github.com/FelipePardim">Felipe Pardim</a></p>
         <p>Alunos: <a href="https://github.com/leonardothomaz">Leonardo Thomaz</a></p>
