@@ -2,7 +2,7 @@
     Trabalho 1 de Fundamentos de Sistemas Inteligentes
 </h1>
 
-## Repositório do Trabalho 1 da disciplina de Fundamentos de Sistemas Inteligentes - UTFPR 2021.
+### Repositório do Trabalho 1 da disciplina de Fundamentos de Sistemas Inteligentes - UTFPR 2021.
 
 <p align="center">
 	<img src="https://img.shields.io/github/stars/FelipePardim/Trabalho-1-FS" />
